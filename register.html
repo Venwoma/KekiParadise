@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>欢迎注册！</title>
+<link rel="icon" type="imag/x-icon"
+    href="images/logo.png">
+<style type="text/css">
+.box{
+	height: 570px;
+	width: 370px;
+	position: absolute;
+	left: 850px;
+	top: 80px;
+	border: 10px solid lightpink;
+	background-color: whitesmoke;
+	
+}
+.img{
+	
+	margin-top: 20px;/*margin是边框对外的距离*/
+	margin-left: 130px;
+	padding-bottom: 0px;
+}	
+.input1{
+	width: 250px;
+	height: 50px;
+	border: 0px;
+	background-color: skyblue;
+	border-radius: 5px;
+}
+.input2{
+	width: 280px;
+	height: 50px;
+	border: 0px;
+	background-color: skyblue;
+	border-radius: 5px;
+}
+
+
+.m-button{
+	background-color: lightpink;
+	width: 90px;
+	height: 50px;
+	margin-left: 60px;
+	margin-top: 30px;
+	border: 0px;
+	border-radius: 5px;
+	
+	
+}
+body{
+	background-image: url("images/lovely.jpg");
+	background-repeat: no-repeat;
+	background-size: 1600px 900px;
+}
+
+.box-font{
+	padding-left: 10px;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;}
+h2{
+	margin-top: 0;
+	color: rgb(105, 105, 210);
+}
+</style>
+<script src="./js/jquery-2.2.4.js"></script>
+<script>
+	
+	function Check(){
+		let pass = document.getElementById('pass').value;
+		let repass = document.getElementById('repass').value;
+		
+		
+		function checkUserName(){
+            // 根据id获取Web中某个元素
+            let user_name = document.getElementById("user_name").value;
+			let user_nameRegex = /^1[0-9]{10}$/;
+            if(user_nameRegex.test(user_name)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+	
+		function checkPass(){
+		if(pass == repass&&pass.length != 0&&repass.length != 0)
+			return true; 
+			else {
+		      if (pass.length == 0 || repass.length == 0) {
+		        alert("密码不能为空！");
+		      }
+		      return false;
+   				 }
+			}
+		if(checkUserName()&&checkPass()){
+			window.location.href = "login.html";}
+			else{
+			if(!checkUserName()){
+				alert("电话号码格式不正确!");
+			}
+			if(pass != repass){
+				alert("两次密码不一致!");
+			}
+		}
+	}
+	$(document).ready(function() {
+    // 缓存所有的 .input1 和 .input2 类的 input 元素
+    let inputs = $('.input1, .input2');
+
+    // 监听键盘事件
+    $(document).on('keydown', function(e) {
+        let currentInput = $(':focus'), // 当前获得焦点的元素
+        index = inputs.index(currentInput); // 当前元素的索引
+
+        // 检查是否是上下箭头键
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+            e.preventDefault(); // 阻止页面滚动
+
+            // 根据按下的键，找到下一个或上一个 input 元素
+            let nextIndex = e.key === 'ArrowUp' ? index - 1 : index + 1;
+            let nextInput = inputs.eq(nextIndex);
+
+            // 如果下一个元素存在，则将焦点移动到那里
+            if (nextInput.length) {
+                nextInput.focus();
+            }
+        }
+    });
+	$(document).ready(function() {
+    // 缓存所有的 .input1 和 .input2 类的 input 元素
+    let inputs = $('.input1, .input2');
+    let registerButton = $('input[type="button"]').filter(':last'); 
+
+    // 监听键盘事件
+    inputs.on('keypress', function(e) {
+        // 检查按下的键是否是 Enter
+        if (e.key === 'Enter') {
+            e.preventDefault(); // 阻止默认的表单提交行为
+            registerButton.click(); // 触发注册按钮的点击事件
+        }
+    });
+});
+});
+</script>
+
+</head>
+<body>
+<div class = "box">
+	<form>
+	<img src = "images/touxiang.jpg"/ width = "100px" height = "120px" class = "img"></img>
+	<h2 align = "center" float >KEKI乐园</h2>
+	<font class = "box-font">电话：</font><input type = "text"  id = "user_name" onblur = "checkUserName(this)" placeholder = "请输入电话" class = "input2">
+	<br><br>
+	<font class = "box-font">密码：</font><input type = "password" id = "pass" placeholder = "请设置密码" class = "input2">
+	<br><br>
+	<font class = "box-font">确认密码：</font><input type = "password" id = "repass" placeholder = "请再输入密码" class = "input1">
+	
+<br>
+	
+	<input class = "m-button" type = "reset" value = "重置">
+	<input class = "m-button" type = "button" value = "注册" onclick = "Check()"> 
+	</form>
+</div>
+
+</body>
+</html>

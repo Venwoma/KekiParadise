@@ -1,0 +1,296 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>keki乐园</title>
+        <link rel="icon" type="imag/x-icon"
+        href="images/logo.png">
+        <style>
+            body{
+                background: url(images/bg.jpg);
+                background-repeat: no-repeat;  
+                background-position: center;  
+                background-size: cover; 
+                background-attachment: fixed;
+            }
+           
+            a:hover {
+            transform: scale(1.25);
+            color: rgb(137, 137, 229);
+            }
+            #logo{
+            margin-right: auto; /* 将logo推到导航栏的最左边 */
+            width: 120px; /* 保持logo宽度自适应 */
+            height: 100px;
+            margin-left: 30px;
+            margin-top: 15px;
+            }
+            #music-controls {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+
+            /* 加大图片的大小 */
+            #logo-img {
+                width: 80px; 
+                height: 80px; 
+                object-fit: contain;
+                margin-right: 20px;
+                margin-top: 20px;
+            }
+
+            /* 添加一个名为 rotate 的 CSS 动画 */
+            @keyframes rotate {
+                from {
+                transform: rotate(0deg);
+                }
+                to {
+                transform: rotate(360deg);
+                }
+            }
+
+            /* 当音乐播放时让图片旋转 */
+            #music-controls.playing #logo-img {
+                animation: rotate 2s linear infinite;
+            }
+
+            .search{
+                text-align: center;
+            }
+            #search-baidu,#search-box
+            {
+                border: 0;
+                outline: 0ch;
+                height: 50px;
+                border-radius: 5px;
+            }
+            #search-baidu{
+                background-color: pink;
+                width: 80px;
+            }
+            #search-box{
+                width: 400px;
+                
+            }
+            /*按钮参考网页https://codepen.io/tmrDevelops/pen/VeRvKX*/
+            .button-styled {
+                width: 200px;
+                display: inline-block;
+                background: transparent;
+                padding: 1rem 1rem;
+                margin: 0 1rem;
+                transition: all .5s ease;
+                color: palevioletred;
+                font-size: 2rem;
+                letter-spacing: 1px;
+                text-align: center;
+                text-decoration: none; /* 移除链接的下划线 */
+                box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, .2);
+                border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+            }
+            .button-styled:hover {
+                box-shadow: 2px 8px 4px -6px hsla(0, 0%, 0%, .3);
+                
+            }
+            .button-styled.lined.thick {
+                border: solid 7px palevioletred;
+            }
+            td{
+                width: 200px;
+                height: 100px;
+            }
+            #box, #container{
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #container {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #input-box{
+                width: 1000px;
+                height: 440px;
+                background-color: rgba(215, 166, 174, 0.411);
+                margin-left: 60px;
+                
+            }
+            #datetime,#p-title,#content{
+                margin-left: 40px;
+            }
+            #datetime{
+                width: 270px;
+                height: 30px;
+                margin-top: 10px;
+                background-color: lemonchiffon;
+                
+            }
+            #p-title,#p-file{
+                width: 250px;
+                font-size: large;
+                font-family: cursive;
+                background-color: antiquewhite;
+            
+            }
+            #p-title{
+                padding: 10px;
+            }
+            #p-file{
+                height: 37px;
+            }
+            #content{
+                width: 800px;
+                height: 290px;
+                font-size: large;
+                font-family: cursive;
+                border: none;
+                background-color: antiquewhite;
+                
+            }
+            #publish{
+                background-color: pink;
+                width: 80px;
+                height: 40px;
+                border: none;
+                margin-left: 850px;
+                margin-bottom: 40px;
+            }
+            
+        </style>
+        <script src="./js/jquery-2.2.4.js"></script>
+        <script>
+            $(document).ready(function() {
+              var music = $("#bg-music")[0];
+              var musicControls = $("#music-controls");
+          
+              // 页面加载后立即播放音乐
+              music.play();
+          
+              // 控制按钮添加playing类
+              musicControls.addClass("playing");
+          
+              musicControls.click(function() {
+                if (music.paused) {
+                  music.play();
+                  musicControls.addClass("playing");
+                } else {
+                  music.pause();
+                  musicControls.removeClass("playing");
+                }
+              });
+            $('#search-baidu').click(function() {
+                window.location.href = "https://www.baidu.com";
+            });
+            $('#search-box').on('keydown', function() {
+                // 检查是否是 Enter 键（键码 13）
+                if (event.which === 13) {
+                    // 阻止默认行为，防止页面滚动等
+                    event.preventDefault();
+                    // 手动触发点击事件
+                    $('#search-baidu').click();
+                }
+            });
+            $('#content').keyup(function(event) {
+                // 检查#content元素的值是否不为空
+                if ($('#content').val().trim() !== '') {
+                    if (event.keyCode === 13) {
+                        alert('发布成功！');
+                        window.location.href = 'index.html'; 
+                    }
+                }
+            });
+            $('#publish').click(function(event) {
+                let inputContent = $('#content').val();
+                if (inputContent.trim() === '') {
+                    alert('请输入内容');
+                    return; // 阻止事件的进一步传播
+                } else {
+                    // 如果不为空，则发布成功并重定向
+                    alert('发布成功！');
+                    window.location.href = "index.html";
+                }
+            });
+            $inputs = $('#input-box input');
+            let currentIndex = 0;
+
+            // 当输入框获得焦点时更新 currentIndex
+            $inputs.on('focus', function(event) {
+                currentIndex = $inputs.index(event.target);
+            });
+
+            $inputs.on('keydown', function(event) {
+                var key = event.key;
+                if (key === 'ArrowUp') {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    }
+                } else if (key === 'ArrowDown') {
+                    if (currentIndex < $inputs.length - 1) {
+                        currentIndex++;
+                    }
+                }
+                $inputs.eq(currentIndex).focus();
+            });
+                    
+            });
+          </script>
+          
+    </head>
+    <body>
+        <div id = "menu">
+            <a href = "index.html"><img src = "images/logo.png" id = "logo"></a>
+           
+            <audio id = "bg-music" loop autoplay>
+                <source src = "audio/BGM.ogg" type = "audio/mpeg">
+              </audio>
+              
+              <!-- 使用logo图片作为音乐控制按钮 -->
+              <div id = "music-controls" class = "playing">
+                <img id = "logo-img" src = "images/music.png" alt = "Logo">
+              </div>
+        </div>
+           
+        <div class = "search">
+            <input type = "search"  id = "search-box" placeholder = "请输入搜索内容">
+            <button type = "button" id = "search-baidu">搜索</button>
+        </div>
+
+        <table id = "box" >
+            <tr align = "center">
+                <td width = "100" rowspan = "2"><img src = "images/font/class.png" width = "200px"></td>
+                <td ><a href = "person.html" target = "major" class = "button-styled">小游戏</a></td>
+                <td ><a href = "person.html" target = "major" class = "button-styled">幸运大转盘</a></td>
+                <td ><a href = "person.html" target = "major" class = "button-styled">猜一猜</a></td>
+                <td ><a href = "person.html" target = "major" class = "button-styled">成长日志</a></td>
+            </tr>
+            <tr align = "center">
+                <td ><a href = "person.html" target = "major" class = "button-styled">星座运势</a></td>
+                <td ><a href = "person.html" target = "major" class = "button-styled">电子宠物</a></td>
+                <td ><a href = "person.html" target = "major" class = "button-styled">盲盒</a></td>
+                <td ><a href = "person.html" target = "major" class = "button-styled">音乐</a></td>
+            </tr>
+        </table>
+        
+       
+        <table id = "container">
+            <tr>
+                <td width = "100" rowspan = "2"><img src = "images/font/rizhi.png" width = "200px"></td>
+                <td>
+                    <div id = "input-box">
+                        <input type = "date" id = "datetime"><br>
+                        <input type = "text" id = "p-title" placeholder = "请输入日志标题">
+                        <input type = "file" id = "p-file" >
+                        <input type = "text" id = "content" placeholder = "请输入日志内容"> <br>
+                        <button id = "publish">发布</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+     
+    </body>
+    </html>

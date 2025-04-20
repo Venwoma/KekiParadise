@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keki乐园</title>
+    <link rel="icon" type="imag/x-icon"
+    href="images/logo.png">
+    <style>
+        body{
+            background: url(images/bg1.png);
+            background-repeat: no-repeat;  
+            background-position: center;  
+            background-size: cover; 
+            background-attachment: fixed;
+        }
+        #logo{
+            margin-right: auto; /* 将logo推到导航栏的最左边 */
+            width: 120px; /* 保持logo宽度自适应 */
+            height: 100px;
+            margin-left: 30px;
+        }
+        #menu {
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: row;
+            margin-top: 20px;
+            margin-right: 30px;
+            height: 80px;
+            
+        }
+        
+        #menu > div {
+            margin-right: 30px;
+            font-family: Arial, sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            position: relative;
+        }
+        a:link{
+            color:lightblue;
+            text-decoration: none;
+            
+        }
+        a:visited{
+            color:rgba(105, 105, 210, 0.527);
+            text-decoration: none;
+        }
+        a:hover{
+            color: pink;
+        }
+        
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color:lightcyan;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 30px;
+        }
+
+        #news{
+            height: 400px;
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+           
+        }
+        #box { 
+            border-collapse: separate;
+            border-spacing: 5px; /* 设置列的间距 */
+            width: 100%;
+        }
+        td {
+            padding: 0px; 
+            border: 0px solid paleturquoise; 
+            text-align: center; 
+            height: 180px;
+        }
+        
+        
+        div,#box,td{
+            border-radius: 5px; /* 设置圆角的半径为10像素 */
+        }
+        ol > li {
+            font-size: 20px; 
+            text-align: left;
+        }
+        .mark{
+            width: 20px;
+            text-align: right;
+        }
+        
+    </style>
+    <script src="./js/jquery-2.2.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#menu > div").hover(function(){
+                $(this).find('.submenu').slideDown(500);
+            }, function(){
+                $(this).find('.submenu').slideUp(500);
+            });
+            $(document).ready(function(){
+        // 定义一个数组，存放要切换的背景图片路径
+        let backgrounds = ["url(images/news/news1.png)", "url(images/news/news2.png)", "url(images/news/news3.png)"];
+        let currentIndex = 0; // 当前背景图片索引
+
+        // 设置初始背景图片
+        $("#news").css("background-image", backgrounds[currentIndex]);
+
+        // 定时器，每隔一段时间切换背景图片
+        setInterval(function(){
+            // 切换背景图片
+            currentIndex = (currentIndex + 1) % backgrounds.length;
+            $("#news").css("background-image", backgrounds[currentIndex]);
+        }, 5000); // 切换间隔为 5000 毫秒（5秒）
+        });
+        
+        });
+    </script>
+</head>
+<body>
+    <div id = "menu">
+        <img src = "images/logo.png" id = "logo">
+    
+        <div>
+            <a href = "forum.html">乐园入口</a>
+            <div class = "submenu">
+                <div><a href = "forum.html">美妆分享</a></div>
+                <div><a href = "forum.html">心情日志</a></div>
+                <div><a href = "forum.html">论坛讨论</a></div>
+            </div>
+        </div>
+        <div>
+           <a href = "person.html"> 个人首页</a>
+        </div>
+        <div>
+            <a href = "login.html">登录</a>
+        </div>
+    </div>
+    <div id = "news">
+    </div>
+    <table id = "box">
+        <tr>
+            <td width = "500px">
+                <img src = "images/font/game-font1.png" width = "300px">
+                <marquee loop = "infinite">
+                    <a href = "https://www.4399.com/flash/196589.htm"><img src = "./images/games/game1.jpg" height = "150" title = "全民养成之女皇"/></a>
+                    <a href = "https://www.4399.com/flash/225521.htm"><img src = "./images/games/game2.jpg" height = "150" title = "小花仙"/></a>
+                    <a href = "https://www.4399.com/flash/224754.htm"><img src = "./images/games/game3.jpg" height = "150" title = "我给仓鼠盖别墅"/></a>
+                    <a href = "https://www.4399.com/flash/220335.htm"><img src = "./images/games/game4.jpg" height = "150" title = "叶罗丽彩妆公主"/></a>
+                    <a href = "https://www.4399.com/flash/196589.htm"><img src = "./images/games/game1.jpg" height = "150" title = "全民养成之女皇"/></a>
+                    <a href = "https://www.4399.com/flash/225521.htm"><img src = "./images/games/game2.jpg" height = "150" title = "小花仙"/></a>
+                    <a href = "https://www.4399.com/flash/224754.htm"><img src = "./images/games/game3.jpg" height = "150" title = "我给仓鼠盖别墅"/></a>
+                    <a href = "https://www.4399.com/flash/220335.htm"><img src = "./images/games/game4.jpg" height = "150" title = "叶罗丽彩妆公主"/></a>
+                </marquee>
+            </td>
+            <td>
+                <img src = "images/font/hot-font.png" width = "200px" >   
+                <ol>
+                <li>
+                    着力打造具有全球影响力的产业科技创新中心<img src = "images/font/re.png"  class = "mark">
+                </li>
+                <li> 
+                    明天下班走出办公室的我：【五一假期怎么过】<img src = "images/font/re.png"  class = "mark">
+                </li>
+                <li>
+                    人生哪次考试决定了你的命运<img src = "images/font/xin.png" class = "mark" >
+                </li>
+                </ol>  
+                
+            </td>
+            
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <img src = "images/flower.png" width = "200px">
+                        </td>
+                        <td image-container >
+                            <a href = "forum.html"><img src = "images/pet1.gif" id = "pet" title = "主人好呀，快来找我聊天"></a>
+                        
+                        </td>
+                    </tr>
+                </table>
+                
+        </tr>
+        
+    </table>
+</body>
+</html>

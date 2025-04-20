@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>欢迎登录！</title>
+<link rel="icon" type="imag/x-icon"
+    href="images/logo.png">
+<style type="text/css">
+.box{
+	height: 570px;
+	width: 370px;
+	position: absolute;
+	left: 850px;
+	top: 80px;
+	border: 10px solid lightpink;
+	background-color: whitesmoke;
+	
+}
+.img{
+	
+	margin-top: 20px;/*margin是边框对外的距离*/
+	margin-left: 130px;
+}	
+.input1{
+	width: 285px;
+	height: 50px;
+	border: 0px;
+	background-color: skyblue;
+	border-radius: 5px;
+	}
+.m-button{
+	background-color: lightpink;
+	width: 90px;
+	height: 50px;
+	margin-left: 25px;
+	margin-top: 30px;
+	border: 0px;
+	border-radius: 5px;
+	
+}
+body{
+	background-image:url("images/lovely.jpg");
+	background-repeat: no-repeat;
+	background-size:1600px 900px;
+}
+
+.box-font{
+	padding-left: 10px;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;}
+
+h2{
+	margin-top: 0;
+	color: rgb(105, 105, 210);
+}
+</style>
+<script>
+	function checkUserName(){
+            // 根据id获取Web中某个元素
+            let user_name = document.getElementById("user_name").value;
+			let user_nameRegex = /^1[0-9]{10}$/;
+            if(user_nameRegex.test(user_name)){
+                return true;
+				
+            }else{
+                alert("电话号码格式不正确！");
+				event.preventDefault();
+                return false;
+            }
+        }
+	document.addEventListener('keydown', function(event) {
+    let currentInput = event.target;
+   	let inputs = document.querySelectorAll('.input1');
+    let currentIndex = Array.prototype.indexOf.call(inputs, currentInput);
+
+    if (event.key === 'ArrowUp' && currentIndex > 0) {
+        // 移动到上面的input
+        inputs[currentIndex - 1].focus();
+        event.preventDefault(); // 阻止默认的滚动行为
+    } else if (event.key === 'ArrowDown' && currentIndex < inputs.length - 1) {
+        // 移动到下面的input
+        inputs[currentIndex + 1].focus();
+        event.preventDefault(); // 阻止默认的滚动行为
+    }
+	});	
+		
+</script>
+
+</head>
+<body>
+<div class = "box">
+	<form action = "index.html">
+
+	<img src = "images/touxiang.jpg" width = "100px" height = "120px" class = "img"></img>
+	<h2 align = "center"  >KEKI乐园</h2>
+	<font class = "box-font">电话：</font><input type = "text"  id = "user_name" onblur = "checkUserName(this)" placeholder = "请输入电话" class = "input1">
+	<br><br>
+	<font class = "box-font">密码：</font><input type = "password" id = "pass" placeholder = "请输入密码"  class = "input1" >
+	<br>
+	<input class = "m-button" type = "submit" value = "登录" onclick = "checkUserName(event);">
+	<input class = "m-button" type = "reset" value = "重置" >
+	<input class = "m-button" type = "button" value = "注册"  onclick = "window.location.href = 'register.html'"> 
+	
+	</form>
+
+</div>
+</body>
+</html>
