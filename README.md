@@ -43,7 +43,9 @@ Upload Time: Organized and published to GitHub after refinement
 ---
 
 ## 预览 | Preview
-（可以放一张项目截图，或者加一句“点击index.html体验页面效果”）
+![image](https://github.com/user-attachments/assets/a8e75550-6560-4aac-a408-d248d6aca4e1)
+
+
 
 ---
 
